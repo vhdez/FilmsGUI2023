@@ -24,25 +24,31 @@ public class FilmsController {
     public TableColumn<BoxOfficeFilm, Integer> peakColumn;
 
     public void initialize() {
-        restoreOrReadData();
+        //restoreOrReadData();
+        BoxOfficeFilm.readAllData();
+        ArrayList<Film> temporaryList = (ArrayList<Film>) Film.getAllFilms();
+        // Turn the read data's ArrayList into an ObservableList
+        ObservableList temporaryObservableList = FXCollections.observableArrayList(temporaryList);
+        // Make that ObservableList the list for my TableView
+        allFilmsView.setItems(temporaryObservableList);
 
         // Wire table's columns with BoxOfficeFilm's fields
 
-        // This causes all stored values in BoxOfficeFilm fields to be displayed in their corresponding Columns
+        // This causes BoxOfficeFilm's values to be displayed in TableView
         rankColumn.setCellValueFactory(new PropertyValueFactory<>("rank"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         grossColumn.setCellValueFactory(new PropertyValueFactory<>("gross"));
         releaseYearColumn.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         peakColumn.setCellValueFactory(new PropertyValueFactory<>("peak"));
 
-        // This is how a column detects the new value entered after a Column cell is edited
+        // This causes TableView's values to be editable
         rankColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         titleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         grossColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
         releaseYearColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         peakColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        // This is how new value from Column cell edit gets stored in that row's corresponding BoxOfficeFilm field
+        // This causes edited values from TableView to be stored in BoxOfficeFilm object
         rankColumn.setOnEditCommit(
                 (TableColumn.CellEditEvent<BoxOfficeFilm, Integer> t) -> {
                     int tableRow = t.getTablePosition().getRow();
