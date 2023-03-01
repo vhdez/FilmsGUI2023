@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.scienceleadership.filmsgui2023.FilmsController">
+   <children>
+      <TableView fx:id="allFilmsView" editable="true" prefHeight="567.0" prefWidth="631.0">
+        <columns>
+          <TableColumn fx:id="rankColumn" prefWidth="38.0" text="Rank" />
+          <TableColumn fx:id="titleColumn" prefWidth="323.0" text="Title" />
+            <TableColumn fx:id="releaseYearColumn" minWidth="0.0" prefWidth="79.0" text="Release Year" />
+            <TableColumn fx:id="grossColumn" prefWidth="145.0" text="Gross" />
+            <TableColumn fx:id="peakColumn" minWidth="0.0" prefWidth="45.0" text="Peak" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
